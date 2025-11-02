@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/recipes")
 public class RecipeController {
 
     @Autowired
@@ -19,32 +20,32 @@ public class RecipeController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/api/recipe/user/{userId}")
+    @PostMapping("/user/{userId}")
     public Recipe createRecipe(@RequestBody Recipe recipe, @PathVariable Long userId) throws Exception{
         User user = userService.findUserById(userId);
         Recipe createdRecipe = recipeService.createRecipie(recipe,user);
         return createdRecipe;
     }
 
-    @GetMapping("/api/recipe")
+    @GetMapping()
     public List<Recipe> getAllRecipe() throws Exception{
         List<Recipe> recipes = recipeService.findAllRecipe();
         return recipes;
     }
 
-    @DeleteMapping("/api/recipe/{recipeId}")
+    @DeleteMapping("/{recipeId}")
     public String deleteRecipe(@PathVariable Long recipeId) throws Exception{
         recipeService.deleteRecipe(recipeId);
         return "Recipe deleted Successfully";
     }
 
-    @PostMapping("api/recipe/{id}")
+    @PostMapping("/{id}")
     public Recipe updateRecipe(Recipe recipe,@PathVariable Long id) throws Exception{
         Recipe updatedRecipe = recipeService.updateRecipe(recipe,id);
         return updatedRecipe;
     }
 
-    @PostMapping("/api/recipe/{id}/user/{userId}")
+    @PostMapping("/{id}/like/user/{userId}")
     public Recipe likeRecipe(@PathVariable Long id,@PathVariable Long userId) throws Exception{
         User user = userService.findUserById(userId);
         Recipe updatedRecipe = recipeService.likeRecipe(id,user);
