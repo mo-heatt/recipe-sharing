@@ -8,5 +8,5 @@ import { RecipeCard } from '../recipe-card/recipe-card';
   styleUrl: './home-page.scss',
 })
 export class HomePage {
-
+  recipes = [1,1,1,1,11,1]
 }
