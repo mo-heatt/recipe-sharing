@@ -1,0 +1,149 @@
+<div class="flex justify-center items-center h-screen bg-gray-100 overflow-hidden">
+  <div
+    class="container relative w-[850px] h-[550px] bg-white rounded-2xl shadow-2xl flex overflow-hidden transition-all duration-700">
+    
+    <!-- LEFT SIDE (Cover Section) -->
+    <div class="relative w-1/2 h-full overflow-hidden">
+      <!-- Front (Sign Up Image) -->
+      <div
+        class="absolute inset-0 transition-opacity duration-700"
+        [ngClass]="{ 'opacity-100': !isRegister, 'opacity-0 pointer-events-none': isRegister }"
+      >
+        <img
+          src="https://images.pexels.com/photos/4050078/pexels-photo-4050078.jpeg?auto=compress&cs=tinysrgb&w=800"
+          alt="Sign Up"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white px-6 text-center">
+          <span class="text-2xl font-semibold">Share, Savor, and Create!</span>
+          <span class="mt-2 text-sm">Your recipe journey starts here 🍽️</span>
+        </div>
+      </div>
+
+      <!-- Back (Login Image) -->
+      <div
+        class="absolute inset-0 transition-opacity duration-700"
+        [ngClass]="{ 'opacity-100': isRegister, 'opacity-0 pointer-events-none': !isRegister }"
+      >
+        <img
+          src="https://media.istockphoto.com/id/1269534074/photo/it-does-your-body-good.jpg?b=1&s=612x612&w=0&k=20&c=XCpJri3nMZI4avV7bRHg-XM1rXQsltpjFkhVCD5Q7zU="
+          alt="Login"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white px-6 text-center">
+          <span class="text-2xl font-semibold">Welcome Back!</span>
+          <span class="mt-2 text-sm">Login and continue your recipe adventure 🥘</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE (Form Section) -->
+    <div class="form w-1/2 flex items-center justify-center p-10 bg-white">
+      <div class="form-content w-full max-w-[300px]">
+        <h1 class="text-2xl font-bold text-center text-gray-800 mb-8">
+          {{ isRegister ? 'Login' : 'Sign Up' }}
+        </h1>
+
+        <!-- Register Form -->
+        <form
+          *ngIf="!isRegister"
+          [formGroup]="registerationForm"
+          (ngSubmit)="handleRegister()"
+          class="flex flex-col space-y-5"
+        >
+          <div>
+            <label class="block text-gray-600 mb-2">Full Name</label>
+            <input
+              formControlName="fullName"
+              type="text"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-400 outline-none"
+              placeholder="Enter your name"
+            />
+          </div>
+
+          <div>
+            <label class="block text-gray-600 mb-2">Email</label>
+            <input
+              formControlName="email"
+              type="email"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-400 outline-none"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div>
+            <label class="block text-gray-600 mb-2">Password</label>
+            <input
+              formControlName="password"
+              type="password"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-400 outline-none"
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-pink-500 text-white py-2 rounded-md font-semibold hover:bg-pink-600 transition"
+          >
+            Create Account
+          </button>
+
+          <p class="text-sm text-gray-500 text-center mt-3">
+            Already have an account?
+            <span
+              (click)="isRegister = true"
+              class="text-pink-500 font-medium cursor-pointer hover:underline"
+            >
+              Login
+            </span>
+          </p>
+        </form>
+
+        <!-- Login Form -->
+        <form
+          *ngIf="isRegister"
+          [formGroup]="logInForm"
+          (ngSubmit)="handleLogin()"
+          class="flex flex-col space-y-5"
+        >
+          <div>
+            <label class="block text-gray-600 mb-2">Email</label>
+            <input
+              formControlName="email"
+              type="email"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-400 outline-none"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div>
+            <label class="block text-gray-600 mb-2">Password</label>
+            <input
+              formControlName="password"
+              type="password"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-400 outline-none"
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-pink-500 text-white py-2 rounded-md font-semibold hover:bg-pink-600 transition"
+          >
+            Login
+          </button>
+
+          <p class="text-sm text-gray-500 text-center mt-3">
+            Don’t have an account?
+            <span
+              (click)="isRegister = false"
+              class="text-pink-500 font-medium cursor-pointer hover:underline"
+            >
+              Sign Up
+            </span>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

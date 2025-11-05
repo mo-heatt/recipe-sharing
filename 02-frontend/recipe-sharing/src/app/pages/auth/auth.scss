@@ -1,0 +1,11 @@
+.container {
+  transition: transform 0.8s ease-in-out;
+}
+
+.cover {
+  transition: transform 0.8s ease-in-out;
+}
+
+.route-active {
+  transform: translateX(-100%);
+}
